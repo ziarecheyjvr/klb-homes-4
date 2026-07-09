@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-ink: #0a0908;
+  --color-ink-soft: #14120f;
+  --color-ink-elevated: #1b1815;
+  --color-sand: #f3ede2;
+  --color-sand-dim: #cabfa9;
+  --color-bronze: #c9a267;
+  --color-bronze-soft: #a9895f;
+  --color-line: rgba(243, 237, 226, 0.12);
+  --font-serif: var(--font-instrument-serif);
+  --font-sans: var(--font-archivo);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-elevated: var(--color-ink-elevated);
+  --color-sand: var(--color-sand);
+  --color-sand-dim: var(--color-sand-dim);
+  --color-bronze: var(--color-bronze);
+  --color-bronze-soft: var(--color-bronze-soft);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-ink);
+  color-scheme: dark;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-sand);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  overflow-x: clip;
+  cursor: none;
+}
+
+@media (max-width: 900px), (hover: none) {
+  body {
+    cursor: auto;
+  }
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--color-bronze);
+  color: var(--color-ink);
+}
+
+/* thin luxury scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-bronze-soft);
+  border-radius: 4px;
+}
+
+.split-line {
+  overflow: hidden;
+  display: block;
+}
+
+.char {
+  will-change: transform, opacity;
+}
+
+.glass {
+  background: rgba(20, 18, 15, 0.45);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--color-line);
+}
+
+.text-gradient-bronze,
+.text-gradient-bronze .char {
+  background: linear-gradient(120deg, #e8d4ab 0%, #c9a267 45%, #8a6b3f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
