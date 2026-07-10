@@ -10,21 +10,17 @@ export default function Hero() {
   const headlineRef = useCharReveal<HTMLHeadingElement>(0.5);
   const ctaRef = useRef<HTMLDivElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
-  const mastheadRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.set([ctaRef.current, subRef.current, mastheadRef.current, footerRef.current], {
+    gsap.set([ctaRef.current, subRef.current], {
       opacity: 0,
       y: 20,
     });
-    gsap.to(mastheadRef.current, { opacity: 1, y: 0, duration: 1, ease: "power4.out", delay: 0.2 });
     gsap.to(subRef.current, { opacity: 1, y: 0, duration: 1, ease: "power4.out", delay: 1.6 });
     gsap.to(ctaRef.current, { opacity: 1, y: 0, duration: 1, ease: "power4.out", delay: 1.85 });
-    gsap.to(footerRef.current, { opacity: 1, y: 0, duration: 1, ease: "power4.out", delay: 2.05 });
 
     gsap.fromTo(
       imageRef.current,
@@ -71,18 +67,11 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-ink)] via-[var(--color-ink)]/10 to-[var(--color-ink)]/55" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[var(--color-ink)]/40 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-ink)] via-[var(--color-ink)]/15 to-[var(--color-ink)]/55" />
 
-      <div ref={parallaxRef} className="relative z-10 flex h-full flex-1 flex-col justify-between px-6 pt-28 pb-8 md:px-12 md:pt-32 md:pb-10">
-        {/* masthead row */}
-        <div ref={mastheadRef} className="flex items-center justify-between border-t border-[var(--color-line)] pt-4 text-[10px] uppercase tracking-[0.35em] text-[var(--color-sand-dim)]">
-          <span>Marbella Edition</span>
-          <span className="hidden sm:inline">Est. 2010</span>
-        </div>
-
+      <div ref={parallaxRef} className="relative z-10 flex h-full flex-1 flex-col justify-end px-6 pb-16 md:px-12 md:pb-20">
         {/* headline block */}
-        <div className="mt-auto grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-6">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-6">
           <div className="lg:col-span-8">
             <p className="mb-4 text-xs uppercase tracking-[0.4em] text-[var(--color-bronze)]">
               Marbella&apos;s Premier Boutique Real Estate Agency
@@ -97,24 +86,16 @@ export default function Hero() {
             </h1>
           </div>
 
-          <div className="border-[var(--color-line)] lg:col-span-4 lg:border-l lg:pl-8">
-            <p ref={subRef} className="max-w-sm text-sm font-light leading-relaxed text-[var(--color-sand-dim)] md:text-base">
+          <div className="glass rounded-sm p-6 lg:col-span-4">
+            <p ref={subRef} className="max-w-sm text-sm leading-relaxed text-[var(--color-sand)] md:text-base">
               Discover exceptional properties and personalized service with Marbella&apos;s
               premier boutique real estate agency. Led by Lucie Balasova, we specialize in
               finding your perfect Spanish sanctuary.
             </p>
-            <div ref={ctaRef} className="mt-8">
+            <div ref={ctaRef} className="mt-6">
               <MagneticButton variant="link">Book Your Personal Property Consultation</MagneticButton>
             </div>
           </div>
-        </div>
-
-        {/* footer row */}
-        <div
-          ref={footerRef}
-          className="mt-10 flex items-center border-t border-[var(--color-line)] pt-4 text-[10px] uppercase tracking-[0.3em] text-[var(--color-sand-dim)]"
-        >
-          <span>Las Palmeras — Nueva Andalucía</span>
         </div>
       </div>
     </section>

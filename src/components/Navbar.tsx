@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import MagneticButton from "./MagneticButton";
 
@@ -120,8 +121,20 @@ export default function Navbar() {
       </div>
 
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-12">
-        <a href="#hero" data-cursor-hover className="font-serif text-xl tracking-[0.15em] text-[var(--color-sand)]">
-          KLB <span className="text-gradient-bronze italic">Homes</span>
+        <a
+          href="#hero"
+          data-cursor-hover
+          className="inline-flex items-center rounded-sm bg-[var(--color-sand)] px-3 py-2"
+        >
+          <span className="relative block h-6 w-[106px]">
+            <Image
+              src="https://klb-homes.com/wp-content/uploads/2026/06/Untitled-design-20-300x169.png"
+              alt="KLB Homes"
+              fill
+              className="object-contain"
+              priority
+            />
+          </span>
         </a>
 
         <ul className="hidden items-center gap-8 lg:flex">

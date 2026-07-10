@@ -1,11 +1,20 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--color-line)] bg-[var(--color-ink)] px-6 py-16 md:px-12">
       <div className="mx-auto flex max-w-[1600px] flex-col gap-12 md:flex-row md:justify-between">
         <div>
-          <p className="font-serif text-2xl tracking-[0.15em] text-[var(--color-sand)]">
-            KLB <span className="text-gradient-bronze italic">Homes</span>
-          </p>
+          <div className="inline-flex items-center rounded-sm bg-[var(--color-sand)] px-4 py-2.5">
+            <span className="relative block h-7 w-[124px]">
+              <Image
+                src="https://klb-homes.com/wp-content/uploads/2026/06/Untitled-design-20-300x169.png"
+                alt="KLB Homes"
+                fill
+                className="object-contain"
+              />
+            </span>
+          </div>
           <p className="mt-4 max-w-xs text-sm text-[var(--color-sand-dim)]">
             Marbella&apos;s premier boutique real estate agency, led by Lucie Balasova.
           </p>

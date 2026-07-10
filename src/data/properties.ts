@@ -9,7 +9,6 @@ export type Property = {
   category: "Villa" | "Apartment" | "Penthouse" | "Estate" | "Residence";
   image: string;
   gallery?: string[];
-  size: "tall" | "wide" | "square";
 };
 
 // Real KLB Homes listings
@@ -23,7 +22,6 @@ export const properties: Property[] = [
     category: "Villa",
     image:
       "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1600&auto=format&fit=crop",
-    size: "tall",
   },
   {
     id: "oasis-club-10",
@@ -36,7 +34,6 @@ export const properties: Property[] = [
     category: "Villa",
     image:
       "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1600&auto=format&fit=crop",
-    size: "wide",
   },
   {
     id: "villa-aura",
@@ -49,7 +46,6 @@ export const properties: Property[] = [
     category: "Villa",
     image:
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1600&auto=format&fit=crop",
-    size: "square",
   },
   {
     id: "salvia-ii",
@@ -60,7 +56,6 @@ export const properties: Property[] = [
     category: "Apartment",
     image:
       "https://images.unsplash.com/photo-1600585152915-d208bec867a1?q=80&w=1600&auto=format&fit=crop",
-    size: "tall",
   },
   {
     id: "residence-cliffside",
@@ -73,7 +68,6 @@ export const properties: Property[] = [
     category: "Residence",
     image:
       "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?q=80&w=1600&auto=format&fit=crop",
-    size: "wide",
   },
   {
     id: "penthouse-banus",
@@ -86,7 +80,6 @@ export const properties: Property[] = [
     category: "Penthouse",
     image:
       "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1600&auto=format&fit=crop",
-    size: "square",
   },
   {
     id: "estate-zagaleta",
@@ -99,7 +92,6 @@ export const properties: Property[] = [
     category: "Estate",
     image:
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1600&auto=format&fit=crop",
-    size: "tall",
   },
   {
     id: "villa-sotogrande",
@@ -112,7 +104,6 @@ export const properties: Property[] = [
     category: "Villa",
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
-    size: "wide",
   },
   {
     id: "villa-amara",
@@ -125,7 +116,6 @@ export const properties: Property[] = [
     category: "Villa",
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop",
-    size: "square",
   },
   {
     id: "residence-sierra-blanca",
@@ -138,7 +128,6 @@ export const properties: Property[] = [
     category: "Residence",
     image:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1600&auto=format&fit=crop",
-    size: "wide",
   },
   {
     id: "penthouse-puente-romano",
@@ -151,7 +140,6 @@ export const properties: Property[] = [
     category: "Penthouse",
     image:
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
-    size: "tall",
   },
 ];
 
@@ -167,7 +155,6 @@ const additionalFeatured: Property[] = [
     category: "Villa",
     image:
       "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1600&auto=format&fit=crop",
-    size: "square",
   },
   {
     id: "ocean-terrace-penthouse",
@@ -180,7 +167,6 @@ const additionalFeatured: Property[] = [
     category: "Penthouse",
     image:
       "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1600&auto=format&fit=crop",
-    size: "wide",
   },
   {
     id: "finca-del-sol",
@@ -193,7 +179,6 @@ const additionalFeatured: Property[] = [
     category: "Estate",
     image:
       "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1600&auto=format&fit=crop",
-    size: "tall",
   },
   {
     id: "casa-marea",
@@ -206,7 +191,6 @@ const additionalFeatured: Property[] = [
     category: "Villa",
     image:
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1600&auto=format&fit=crop",
-    size: "square",
   },
 ];
 

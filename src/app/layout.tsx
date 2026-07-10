@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Archivo } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import CustomCursor from "@/components/CustomCursor";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -33,7 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${instrumentSerif.variable} ${archivo.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[var(--color-ink)] text-[var(--color-sand)]">
-        <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

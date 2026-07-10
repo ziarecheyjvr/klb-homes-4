@@ -9,12 +9,6 @@ import { useLineReveal } from "@/hooks/useTextReveal";
 
 const CATEGORIES = ["All", "Villa", "Apartment", "Penthouse", "Estate", "Residence"] as const;
 
-const sizeClasses: Record<Property["size"], string> = {
-  tall: "md:row-span-2",
-  wide: "md:col-span-2",
-  square: "",
-};
-
 export default function PropertyShowcase() {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>("All");
   const gridRef = useRef<HTMLDivElement>(null);
@@ -96,10 +90,7 @@ export default function PropertyShowcase() {
           </div>
         </div>
 
-        <div
-          ref={gridRef}
-          className="grid auto-rows-[280px] grid-cols-1 gap-5 md:grid-cols-3 md:grid-flow-dense"
-        >
+        <div ref={gridRef} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((property) => (
             <PropertyCard key={property.id} property={property} />
           ))}
@@ -159,7 +150,7 @@ function PropertyCard({ property }: { property: Property }) {
     <div
       ref={cardRef}
       data-cursor-hover
-      className={`prop-card group relative overflow-hidden rounded-sm ${sizeClasses[property.size]}`}
+      className="prop-card group relative aspect-[4/5] overflow-hidden rounded-sm"
       onMouseEnter={handleEnter}
       onMouseMove={handleTilt}
       onMouseLeave={handleLeave}
