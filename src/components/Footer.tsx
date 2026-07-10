@@ -5,15 +5,13 @@ export default function Footer() {
     <footer className="border-t border-[var(--color-line)] bg-[var(--color-ink)] px-6 py-16 md:px-12">
       <div className="mx-auto flex max-w-[1600px] flex-col gap-12 md:flex-row md:justify-between">
         <div>
-          <div className="inline-flex items-center rounded-sm bg-[var(--color-sand)] px-4 py-2.5">
-            <span className="relative block h-7 w-[124px]">
-              <Image
-                src="https://klb-homes.com/wp-content/uploads/2026/06/Untitled-design-20.png"
-                alt="KLB Homes"
-                fill
-                className="object-contain"
-              />
-            </span>
+          <div className="relative h-10 w-[180px]">
+            <Image
+              src="https://assets.cdn.filesafe.space/WKyceqEYmEdWqTzWB9Ns/media/6a4b7ba88a69aa2441e780bb.png"
+              alt="KLB Homes"
+              fill
+              className="object-contain object-left"
+            />
           </div>
           <p className="mt-4 max-w-xs text-sm text-[var(--color-sand-dim)]">
             Marbella&apos;s premier boutique real estate agency, led by Lucie Balasova.

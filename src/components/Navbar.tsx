@@ -121,20 +121,14 @@ export default function Navbar() {
       </div>
 
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-12">
-        <a
-          href="#hero"
-          data-cursor-hover
-          className="inline-flex items-center rounded-sm bg-[var(--color-sand)] px-3 py-2"
-        >
-          <span className="relative block h-6 w-[106px]">
-            <Image
-              src="https://klb-homes.com/wp-content/uploads/2026/06/Untitled-design-20.png"
-              alt="KLB Homes"
-              fill
-              className="object-contain"
-              priority
-            />
-          </span>
+        <a href="#hero" data-cursor-hover className="relative block h-9 w-[160px]">
+          <Image
+            src="https://assets.cdn.filesafe.space/WKyceqEYmEdWqTzWB9Ns/media/6a4b7ba88a69aa2441e780bb.png"
+            alt="KLB Homes"
+            fill
+            className="object-contain object-left"
+            priority
+          />
         </a>
 
         <ul className="hidden items-center gap-8 lg:flex">
