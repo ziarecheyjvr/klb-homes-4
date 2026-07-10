@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="inline-flex items-center rounded-sm bg-[var(--color-sand)] px-4 py-2.5">
             <span className="relative block h-7 w-[124px]">
               <Image
-                src="https://klb-homes.com/wp-content/uploads/2026/06/Untitled-design-20-300x169.png"
+                src="https://klb-homes.com/wp-content/uploads/2026/06/Untitled-design-20.png"
                 alt="KLB Homes"
                 fill
                 className="object-contain"

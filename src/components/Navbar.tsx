@@ -128,7 +128,7 @@ export default function Navbar() {
         >
           <span className="relative block h-6 w-[106px]">
             <Image
-              src="https://klb-homes.com/wp-content/uploads/2026/06/Untitled-design-20-300x169.png"
+              src="https://klb-homes.com/wp-content/uploads/2026/06/Untitled-design-20.png"
               alt="KLB Homes"
               fill
               className="object-contain"
