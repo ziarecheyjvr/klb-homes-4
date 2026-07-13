@@ -19,7 +19,7 @@ export default function PropertyShowcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(
-    () => (active === "All Properties" ? properties : properties.filter((p) => p.category === active)),
+    () => (active === "All Properties" ? properties : properties.filter((p) => p.category + "s" === (active as string))),
     [active]
   );
 
