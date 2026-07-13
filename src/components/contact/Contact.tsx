@@ -58,7 +58,7 @@ export default function Contact() {
     <section id="contact" className="relative bg-[var(--color-ink)] px-6 py-32 md:px-12">
       <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-16 md:grid-cols-2">
         <div>
-          <p className="mb-4 text-xs uppercase tracking-[0.4em] text-[var(--color-bronze)]">Contact Us</p>
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">Contact Us</p>
           <h2 className="max-w-md font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-5xl">
             Begin your Marbella property journey
           </h2>

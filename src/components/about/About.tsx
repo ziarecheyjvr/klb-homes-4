@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import { useLineReveal } from "@/hooks/useTextReveal";
+import MagneticButton from "../MagneticButton";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const BADGES = ["Boutique Agency", "100% Buyer-Focused", "Costa del Sol Expertise"];
 
@@ -15,7 +17,9 @@ const PILLARS = [
 ];
 
 export default function About() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const headingRef = useLineReveal<HTMLHeadingElement>();
   const shapeRef = useRef<HTMLDivElement>(null);
 
@@ -77,39 +81,37 @@ export default function About() {
       <div className="pointer-events-none absolute -left-24 bottom-10 h-64 w-64 rotate-12 border border-[var(--color-line)]" />
 
       <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-16 md:grid-cols-2 md:items-center">
-        <div className="about-image relative h-[420px] overflow-hidden rounded-sm md:h-[620px]">
+        <div className="about-image relative h-[500px] overflow-hidden rounded-sm md:h-[720px]">
           <Image
             src="https://klb-homes.com/wp-content/uploads/2025/05/93E1949C-0D3C-4A35-B4ED-80903A6EB7A9.jpg"
             alt="Lucie Balasova, Founder of KLB Homes"
             fill
             className="object-cover"
           />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--color-ink)] via-[var(--color-ink)]/20 to-transparent p-6">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--color-image-overlay)] via-[var(--color-image-overlay)]/20 to-transparent p-6">
             <p className="font-serif text-xl text-[var(--color-sand)]">Lucie Balasova</p>
             <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-bronze)]">
-              Property Advisor · Founder of KLB Homes
+              {t("about", "lucieTitle")}
             </p>
           </div>
         </div>
 
         <div>
-          <p className="mb-4 text-xs uppercase tracking-[0.4em] text-[var(--color-bronze)]">About Us</p>
-          <h2 ref={headingRef} className="font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-5xl">
-            Marbella&apos;s Trusted Property Expert
-          </h2>
-          <p className="mt-6 font-serif text-xl italic text-gradient-bronze">
-            Marbella is more than a destination — it is a way of life.
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">
+            {t("about", "subtitle")}
           </p>
-          <p className="mt-6 max-w-lg text-sm leading-relaxed text-[var(--color-sand-dim)]">
-            With over six years of experience in Marbella&apos;s property market, Lucie Balasova
-            helps international buyers find not only the right property, but the right place to
-            call home on the Costa del Sol.
-          </p>
-          <p className="mt-4 max-w-lg text-sm leading-relaxed text-[var(--color-sand-dim)]">
-            Through KLB Homes, she offers a boutique, highly personalised service built on trust,
-            transparency, and genuine care — providing expert guidance throughout every stage of
-            the property journey.
-          </p>
+          <div ref={contentRef}>
+            <h2 ref={headingRef} className="font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-5xl">
+              {t("about", "hello")}
+            </h2>
+            <div className="mt-8 space-y-6 text-sm leading-relaxed text-[var(--color-sand-dim)] md:text-base">
+              <p>{t("about", "p1")}</p>
+              <p>{t("about", "p2")}</p>
+            </div>
+            <div className="mt-10">
+              <MagneticButton variant="link">{t("about", "cta")}</MagneticButton>
+            </div>
+          </div>
 
           <div className="mt-12 flex flex-wrap items-end gap-10">
             <div>
@@ -117,7 +119,7 @@ export default function About() {
                 <span className="about-stat-years">0</span>+
               </div>
               <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-[var(--color-sand-dim)]">
-                Years of Experience
+                {t("about", "experience")}
               </p>
             </div>
             <div className="flex flex-wrap gap-3">

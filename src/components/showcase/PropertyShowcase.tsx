@@ -6,17 +6,20 @@ import { gsap, Flip, ScrollTrigger } from "@/lib/gsap";
 import { properties, Property } from "@/data/properties";
 import { useEffect } from "react";
 import { useLineReveal } from "@/hooks/useTextReveal";
+import { useLanguage } from "@/i18n/LanguageContext";
+import clsx from "clsx";
 
-const CATEGORIES = ["All", "Villa", "Apartment", "Penthouse", "Estate", "Residence"] as const;
+const CATEGORIES = ["All Properties", "Villas", "Apartments", "Penthouses", "Plots"] as const;
 
 export default function PropertyShowcase() {
-  const [active, setActive] = useState<(typeof CATEGORIES)[number]>("All");
+  const { t } = useLanguage();
+  const [active, setActive] = useState<(typeof CATEGORIES)[number]>("All Properties");
   const gridRef = useRef<HTMLDivElement>(null);
   const headingRef = useLineReveal<HTMLHeadingElement>();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(
-    () => (active === "All" ? properties : properties.filter((p) => p.category === active)),
+    () => (active === "All Properties" ? properties : properties.filter((p) => p.category === active)),
     [active]
   );
 
@@ -51,11 +54,6 @@ export default function PropertyShowcase() {
         onEnter: (els) =>
           gsap.fromTo(els, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.15 }),
         onLeave: (els) => gsap.to(els, { opacity: 0, scale: 0.85, duration: 0.3 }),
-        // Wait until cards settle back into normal flow before recalculating
-        // ScrollTrigger positions — refreshing mid-animation reads the grid's
-        // transient collapsed height (Flip sets position:absolute while
-        // animating) and shifts every pinned section below it, causing the
-        // page to jump to an unrelated section.
         onComplete: () => ScrollTrigger.refresh(),
       });
     });
@@ -66,25 +64,26 @@ export default function PropertyShowcase() {
       <div className="mx-auto max-w-[1600px]">
         <div className="mb-16 flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <p className="mb-4 text-xs uppercase tracking-[0.4em] text-[var(--color-bronze)]">The Collection</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">{t("showcase", "subtitle")}</p>
             <h2 ref={headingRef} className="max-w-2xl font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-6xl">
-              Marbella residences of uncommon distinction
+              {t("showcase", "title")}
             </h2>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-4 pt-4 md:pt-0">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 data-cursor-hover
                 onClick={() => handleFilter(cat)}
-                className={`rounded-full border px-5 py-2 text-xs uppercase tracking-[0.15em] transition-all duration-400 ${
+                className={clsx(
+                  "rounded-full border px-5 py-2 text-xs uppercase tracking-[0.15em] transition-all duration-400",
                   active === cat
                     ? "border-[var(--color-bronze)] bg-[var(--color-bronze)] text-[var(--color-ink)]"
                     : "border-[var(--color-line)] text-[var(--color-sand-dim)] hover:border-[var(--color-bronze-soft)] hover:text-[var(--color-sand)]"
-                }`}
+                )}
               >
-                {cat}
+                {t("showcase", `filter${cat.replace(" ", "")}`)}
               </button>
             ))}
           </div>
@@ -101,28 +100,17 @@ export default function PropertyShowcase() {
 }
 
 function PropertyCard({ property }: { property: Property }) {
+  const { t } = useLanguage();
   const cardRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const priceRef = useRef<HTMLSpanElement>(null);
 
   const handleEnter = () => {
     gsap.to(imgRef.current, { scale: 1.12, duration: 1.1, ease: "power3.out" });
-    gsap.to(cardRef.current!.querySelector(".card-details"), {
-      y: 0,
-      opacity: 1,
-      duration: 0.5,
-      ease: "power3.out",
-    });
   };
 
   const handleLeave = () => {
     gsap.to(imgRef.current, { scale: 1, duration: 1.1, ease: "power3.out" });
-    gsap.to(cardRef.current!.querySelector(".card-details"), {
-      y: 12,
-      opacity: 0,
-      duration: 0.4,
-      ease: "power3.in",
-    });
     gsap.to(cardRef.current, {
       rotateX: 0,
       rotateY: 0,
@@ -164,24 +152,24 @@ function PropertyCard({ property }: { property: Property }) {
           className="object-cover"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)] via-[var(--color-ink)]/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-image-overlay)] via-[var(--color-image-overlay)]/10 to-transparent" />
 
       <span className="absolute right-4 top-4 rounded-full border border-[var(--color-line)] bg-[var(--color-ink)]/50 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[var(--color-sand)] backdrop-blur-sm">
         {property.category}
       </span>
 
       <div className="absolute inset-x-0 bottom-0 p-6">
-        <h3 className="font-serif text-xl text-[var(--color-sand)] md:text-2xl">{property.name}</h3>
-        <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--color-sand-dim)]">
+        <h3 className="font-serif text-xl text-[var(--color-bronze)] md:text-2xl">{property.name}</h3>
+        <p className="mt-1 text-xs uppercase tracking-[0.15em] text-white/90">
           {property.location}
         </p>
-        <div className="card-details mt-3 flex translate-y-3 items-center justify-between opacity-0">
+        <div className="card-details mt-3 flex translate-y-3 items-center justify-between opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
           <span ref={priceRef} className="font-serif text-lg text-[var(--color-bronze)]">
             {property.price}
           </span>
-          <span className="text-[11px] text-[var(--color-sand-dim)]">
-            {property.beds ? `${property.beds} bd · ` : ""}
-            {property.baths ? `${property.baths} ba · ` : ""}
+          <span className="text-[11px] text-white/80">
+            {property.beds ? `${property.beds} ${t("showcase", "beds")} · ` : ""}
+            {property.baths ? `${property.baths} ${t("showcase", "baths")} · ` : ""}
             {property.area}
           </span>
         </div>

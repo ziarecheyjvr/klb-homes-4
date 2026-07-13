@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { featured, Property } from "@/data/properties";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 type Stat =
   | { label: string; kind: "number"; value: number; suffix: string }
@@ -33,6 +34,7 @@ function buildStats(property: Property): Stat[] {
 }
 
 export default function FeaturedProperties() {
+  const { t } = useLanguage();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -102,15 +104,14 @@ export default function FeaturedProperties() {
       <div ref={trackRef} className="flex h-full w-max">
         <div className="flex h-full w-[var(--panel-w)] flex-shrink-0 items-center px-6 md:px-16">
           <div className="max-w-md">
-            <p className="mb-4 text-xs uppercase tracking-[0.4em] text-[var(--color-bronze)]">Featured</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">
+              {t("featured", "subtitle")}
+            </p>
             <h2 className="font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-6xl">
-              Signature homes,
-              <br />
-              defined by Marbella
+              {t("featured", "title")}
             </h2>
             <p className="mt-6 text-sm leading-relaxed text-[var(--color-sand-dim)]">
-              Scroll to explore a closer look at signature residences from our current
-              collection — each reflecting the Costa del Sol lifestyle.
+              {t("featured", "description")}
             </p>
           </div>
         </div>
@@ -124,6 +125,7 @@ export default function FeaturedProperties() {
 }
 
 function FeaturedCard({ property }: { property: (typeof featured)[number] }) {
+  const { t } = useLanguage();
   const [showPlan, setShowPlan] = useState(false);
 
   return (
@@ -136,16 +138,16 @@ function FeaturedCard({ property }: { property: (typeof featured)[number] }) {
         className="object-cover"
         priority={false}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)] via-[var(--color-ink)]/30 to-[var(--color-ink)]/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-image-overlay)] via-[var(--color-image-overlay)]/30 to-[var(--color-image-overlay)]/10" />
 
       <div className="relative z-10 flex h-full w-full max-w-[1600px] flex-col justify-end px-6 pb-16 md:px-16">
-        <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-bronze)]">{property.location}</p>
-        <h3 className="mt-3 font-serif text-4xl text-[var(--color-sand)] md:text-6xl">{property.name}</h3>
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--color-bronze)]">{property.location}</p>
+        <h3 className="mt-3 font-serif text-4xl text-white md:text-6xl">{property.name}</h3>
 
         <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
           {buildStats(property).map((stat) => (
             <div key={stat.label}>
-              <div className="font-serif text-2xl text-[var(--color-sand)] md:text-3xl">
+              <div className="font-serif text-2xl text-white md:text-3xl">
                 {stat.kind === "number" ? (
                   <>
                     <span className="stat-num" data-value={stat.value}>
@@ -157,7 +159,7 @@ function FeaturedCard({ property }: { property: (typeof featured)[number] }) {
                   stat.text
                 )}
               </div>
-              <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-[var(--color-sand-dim)]">
+              <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/80">
                 {stat.label}
               </p>
             </div>
@@ -165,13 +167,13 @@ function FeaturedCard({ property }: { property: (typeof featured)[number] }) {
         </div>
 
         <div className="mt-8 flex items-center gap-6">
-          <span className="font-serif text-2xl text-[var(--color-bronze)]">{property.price}</span>
+          <span className="font-serif font-bold text-2xl text-[var(--color-bronze)]">{property.price}</span>
           <button
             data-cursor-hover
             onClick={() => setShowPlan((s) => !s)}
-            className="rounded-full border border-[var(--color-bronze-soft)] px-5 py-2 text-xs uppercase tracking-[0.15em] text-[var(--color-sand)] transition-colors hover:border-[var(--color-bronze)]"
+            className="rounded-full border border-[var(--color-bronze-soft)] px-5 py-2 text-xs uppercase tracking-[0.15em] text-white transition-colors hover:border-[var(--color-bronze)]"
           >
-            {showPlan ? "Hide Floor Plan" : "View Floor Plan"}
+            {showPlan ? t("featured", "hidePlan") : t("featured", "viewPlan")}
           </button>
         </div>
       </div>

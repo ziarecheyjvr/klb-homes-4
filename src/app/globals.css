@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --color-ink: #0a0908;
-  --color-ink-soft: #14120f;
-  --color-ink-elevated: #1b1815;
-  --color-sand: #f3ede2;
-  --color-sand-dim: #cabfa9;
+  --color-ink: #ffffff;
+  --color-ink-soft: #f7f6f3;
+  --color-ink-elevated: #eeebe5;
+  --color-sand: #121212;
+  --color-sand-dim: #5a5a5a;
   --color-bronze: #c9a267;
   --color-bronze-soft: #a9895f;
-  --color-line: rgba(243, 237, 226, 0.12);
+  --color-image-overlay: #2d261e;
+  --color-line: rgba(18, 18, 18, 0.12);
   --font-serif: var(--font-instrument-serif);
   --font-sans: var(--font-archivo);
 }
@@ -21,6 +22,7 @@
   --color-sand-dim: var(--color-sand-dim);
   --color-bronze: var(--color-bronze);
   --color-bronze-soft: var(--color-bronze-soft);
+  --color-image-overlay: var(--color-image-overlay);
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
 }
@@ -31,7 +33,7 @@
 
 html {
   background: var(--color-ink);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html.lenis {
@@ -63,7 +65,7 @@ h1, h2, h3, h4, .font-serif {
 
 ::selection {
   background: var(--color-bronze);
-  color: var(--color-ink);
+  color: #ffffff;
 }
 
 /* thin luxury scrollbar */
@@ -88,7 +90,7 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .glass {
-  background: rgba(20, 18, 15, 0.45);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid var(--color-line);

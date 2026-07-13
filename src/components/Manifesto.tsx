@@ -3,11 +3,11 @@
 import { useEffect, useRef } from "react";
 import SplitType from "split-type";
 import { gsap } from "@/lib/gsap";
-
-const TEXT =
-  "At KLB Homes, we go beyond traditional real estate — we're your dedicated Personal Property Consultants, focused entirely on representing you, the buyer.";
+import MagneticButton from "./MagneticButton";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Manifesto() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -61,14 +61,14 @@ export default function Manifesto() {
       />
       <div className="absolute inset-0 bg-[var(--color-ink)]/70" />
       <div className="relative z-10 mx-auto max-w-4xl px-8 text-center">
-        <p className="mb-6 text-xs uppercase tracking-[0.4em] text-[var(--color-bronze)]">
-          Beyond Real Estate — The KLB Homes Advantage
+        <p className="mb-6 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">
+          {t("manifesto", "subtitle")}
         </p>
         <p
           ref={textRef}
           className="font-serif text-3xl leading-snug text-[var(--color-sand)] md:text-5xl"
         >
-          {TEXT}
+          {t("manifesto", "title")}
         </p>
       </div>
     </section>

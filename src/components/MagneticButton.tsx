@@ -52,7 +52,7 @@ export default function MagneticButton({
           onClick={onClick}
           type={as === "button" ? type ?? "button" : undefined}
           className={clsx(
-            "group inline-flex items-center gap-3 border-b border-[var(--color-bronze-soft)] pb-2 text-xs uppercase tracking-[0.22em] text-[var(--color-sand)] transition-colors duration-500 hover:border-[var(--color-bronze)] hover:text-[var(--color-bronze)]",
+            "group inline-flex items-center gap-3 border-b border-[var(--color-bronze-soft)] pb-2 text-xs uppercase tracking-[0.22em] text-[var(--color-sand)] transition-all duration-500 hover:border-[var(--color-bronze)] hover:opacity-70",
             className
           )}
         >

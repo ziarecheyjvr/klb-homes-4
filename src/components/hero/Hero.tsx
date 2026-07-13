@@ -5,8 +5,10 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { useCharReveal } from "@/hooks/useTextReveal";
 import MagneticButton from "../MagneticButton";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
   const headlineRef = useCharReveal<HTMLHeadingElement>(0.5);
   const ctaRef = useRef<HTMLDivElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
@@ -67,33 +69,31 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-ink)] via-[var(--color-ink)]/15 to-[var(--color-ink)]/55" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-image-overlay)] via-[var(--color-image-overlay)]/15 to-[var(--color-image-overlay)]/55" />
 
       <div ref={parallaxRef} className="relative z-10 flex h-full flex-1 flex-col justify-end px-6 pb-16 md:px-12 md:pb-20">
         {/* headline block */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-6">
           <div className="lg:col-span-8">
-            <p className="mb-4 text-xs uppercase tracking-[0.4em] text-[var(--color-bronze)]">
-              Marbella&apos;s Premier Boutique Real Estate Agency
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">
+              {t("hero", "agencySubtitle")}
             </p>
             <h1
               ref={headlineRef}
-              className="font-serif text-[15vw] leading-[0.88] tracking-tight text-[var(--color-sand)] opacity-0 sm:text-[10vw] lg:text-[6.4vw]"
+              className="font-serif text-[15vw] leading-[0.88] tracking-tight text-white opacity-0 sm:text-[10vw] lg:text-[6.4vw]"
             >
-              Your Dream Marbella
+              {t("hero", "titlePart1")}
               <br />
-              <span className="italic text-gradient-bronze">Property Awaits</span>
+              <span className="italic tracking-wide text-gradient-bronze pr-2">{t("hero", "titlePart2")}</span>
             </h1>
           </div>
 
-          <div className="glass rounded-sm p-6 lg:col-span-4">
+          <div className="glass flex flex-col items-center justify-center rounded-sm p-6 text-center lg:col-span-4">
             <p ref={subRef} className="max-w-sm text-sm leading-relaxed text-[var(--color-sand)] md:text-base">
-              Discover exceptional properties and personalized service with Marbella&apos;s
-              premier boutique real estate agency. Led by Lucie Balasova, we specialize in
-              finding your perfect Spanish sanctuary.
+              {t("hero", "description")}
             </p>
             <div ref={ctaRef} className="mt-6">
-              <MagneticButton variant="link">Book Your Personal Property Consultation</MagneticButton>
+              <MagneticButton variant="link">{t("hero", "cta")}</MagneticButton>
             </div>
           </div>
         </div>

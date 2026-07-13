@@ -5,8 +5,10 @@ import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import { useLineReveal } from "@/hooks/useTextReveal";
 import MagneticButton from "../MagneticButton";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Invest() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useLineReveal<HTMLHeadingElement>();
 
@@ -35,42 +37,21 @@ export default function Invest() {
     <section id="invest" ref={sectionRef} className="relative overflow-hidden bg-[var(--color-ink-soft)] px-6 py-32 md:px-12">
       <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-16 md:grid-cols-2 md:items-center">
         <div>
-          <p className="mb-4 text-xs uppercase tracking-[0.4em] text-[var(--color-bronze)]">
-            KLB Homes Developments
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">
+            {t("invest", "subtitle")}
           </p>
-          <h2 ref={headingRef} className="font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-5xl">
-            Property Investment
-            <br />& Renovation Service
+          <h2 ref={headingRef} className="font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-5xl whitespace-pre-line">
+            {t("invest", "title")}
           </h2>
-          <p className="mt-6 max-w-lg text-sm leading-relaxed text-[var(--color-sand-dim)]">
-            At KLB Homes, we believe real estate investment should be both profitable and
-            stress-free. Renovating a property can be one of the most rewarding strategies in
-            today&apos;s market — offering the potential for strong returns and long-term value.
-            But for many investors, the process can feel overwhelming, filled with time-consuming
-            decisions, complex planning, and unexpected construction challenges.
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-[var(--color-sand-dim)]">
+            {t("invest", "p1")}
           </p>
-          <p className="mt-4 max-w-lg font-serif text-lg italic text-gradient-bronze">
-            That&apos;s where we come in. Let your capital work for you — while we take care of
-            the rest.
+          <p className="mt-4 max-w-xl font-serif text-lg italic text-[var(--color-bronze)]">
+            {t("invest", "p2")}
           </p>
 
           <div className="mt-10">
-            <MagneticButton>Discover</MagneticButton>
-          </div>
-
-          <div className="journey-card glass mt-14 max-w-lg rounded-sm p-8">
-            <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-bronze)]">
-              Property Buyers Experience — Step 01
-            </p>
-            <h3 className="mt-3 font-serif text-2xl text-[var(--color-sand)]">
-              Discovery Consultation
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--color-sand-dim)]">
-              Our collaboration begins with a comprehensive consultation — available via video
-              call or in person — to thoroughly understand your preferences, requirements, and
-              investment goals. We&apos;ll gather all essential details into your exclusive
-              client portfolio, defining the scope of our engagement before beginning our search.
-            </p>
+            <MagneticButton>{t("invest", "cta")}</MagneticButton>
           </div>
         </div>
 
