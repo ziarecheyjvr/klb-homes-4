@@ -90,12 +90,13 @@ export const translations = {
       ]
     },
     about: {
-      subtitle: "Meet the Founder",
-      hello: "Hello,",
-      iam: "I'm Lucie,",
-      p1: "Founder of KLB Homes. My passion is connecting discerning clients with extraordinary properties in Marbella. With a deep understanding of the luxury market and a commitment to personalized service, I ensure that every client finds not just a house, but a true home.",
-      p2: "Our approach is rooted in transparency, integrity, and an unwavering dedication to excellence. Whether you are looking for a summer retreat, a permanent residence, or a sound investment, we are here to guide you every step of the way.",
+      subtitle: "About Us",
+      hello: "Marbella's Trusted Property Expert",
+      p1: "Marbella is more than a destination — it is a way of life.",
+      p2: "With over six years of experience in Marbella's property market, Lucie Balasova helps international buyers find not only the right property, but the right place to call home on the Costa del Sol.",
+      p3: "Through KLB Homes, she offers a boutique, highly personalised service built on trust, transparency, and genuine care — providing expert guidance throughout every stage of the property journey.",
       cta: "Contact Lucie",
+      experience: "Years of Experience",
       lucieTitle: "Property Advisor · Founder of KLB Homes"
     },
     footer: {
@@ -198,12 +199,13 @@ export const translations = {
       ]
     },
     about: {
-      subtitle: "Conoce a la Fundadora",
-      hello: "Hola,",
-      iam: "Soy Lucie,",
-      p1: "Fundadora de KLB Homes. Mi pasión es conectar a clientes exigentes con propiedades extraordinarias en Marbella. Con un profundo conocimiento del mercado de lujo y un compromiso con el servicio personalizado, me aseguro de que cada cliente no solo encuentre una casa, sino un verdadero hogar.",
-      p2: "Nuestro enfoque se basa en la transparencia, integridad y una dedicación inquebrantable a la excelencia. Ya sea que busques un refugio de verano, una residencia permanente o una inversión sólida, estamos aquí para guiarte en cada paso del camino.",
+      subtitle: "Sobre Nosotros",
+      hello: "Experto Inmobiliario de Confianza en Marbella",
+      p1: "Marbella es más que un destino, es un estilo de vida.",
+      p2: "Con más de seis años de experiencia en el mercado inmobiliario de Marbella, Lucie Balasova ayuda a los compradores internacionales a encontrar no solo la propiedad adecuada, sino el lugar adecuado para llamar hogar en la Costa del Sol.",
+      p3: "A través de KLB Homes, ofrece un servicio boutique altamente personalizado basado en la confianza, la transparencia y el cuidado genuino, brindando orientación experta en cada etapa del proceso inmobiliario.",
       cta: "Contactar a Lucie",
+      experience: "Años de Experiencia",
       lucieTitle: "Asesora Inmobiliaria · Fundadora de KLB Homes"
     },
     footer: {
@@ -306,12 +308,13 @@ export const translations = {
       ]
     },
     about: {
-      subtitle: "Poznejte zakladatelku",
-      hello: "Dobrý den,",
-      iam: "Jsem Lucie,",
-      p1: "Zakladatelka KLB Homes. Mojí vášní je propojovat náročné klienty s mimořádnými nemovitostmi v Marbelle. S hlubokým porozuměním luxusnímu trhu a odhodláním k personalizovaným službám zajišťuji, aby každý klient našel nejen dům, ale i skutečný domov.",
-      p2: "Náš přístup je založen na transparentnosti, bezúhonnosti a neochvějném odhodlání k dokonalosti. Ať už hledáte letní útočiště, trvalé bydliště nebo rozumnou investici, jsme tu, abychom vás provedli každým krokem.",
-      cta: "Kontaktovat Lucii",
+      subtitle: "O Nás",
+      hello: "Důvěryhodný Realitní Expert v Marbelle",
+      p1: "Marbella je víc než destinace — je to životní styl.",
+      p2: "S více než šesti lety zkušeností na marbellském realitním trhu pomáhá Lucie Balasová mezinárodním kupcům najít nejen správnou nemovitost, ale to pravé místo, které mohou nazývat domovem na pobřeží Costa del Sol.",
+      p3: "Prostřednictvím KLB Homes nabízí butikové, vysoce personalizované služby založené na důvěře, transparentnosti a upřímné péči – poskytuje odborné poradenství ve všech fázích cesty za vysněnou nemovitostí.",
+      cta: "Kontaktujte Lucii",
+      experience: "Let Zkušeností",
       lucieTitle: "Realitní Poradkyně · Zakladatelka KLB Homes"
     },
     footer: {

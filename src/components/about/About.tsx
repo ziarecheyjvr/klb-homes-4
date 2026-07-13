@@ -104,10 +104,15 @@ export default function About() {
             <h2 ref={headingRef} className="font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-5xl">
               {t("about", "hello")}
             </h2>
-            <div className="mt-8 space-y-6 text-sm leading-relaxed text-[var(--color-sand-dim)] md:text-base">
-              <p>{t("about", "p1")}</p>
-              <p>{t("about", "p2")}</p>
-            </div>
+            <p className="mt-6 font-serif text-xl italic text-gradient-bronze">
+              {t("about", "p1")}
+            </p>
+            <p className="mt-6 max-w-lg text-sm leading-relaxed text-[var(--color-sand-dim)]">
+              {t("about", "p2")}
+            </p>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-[var(--color-sand-dim)]">
+              {t("about", "p3")}
+            </p>
             <div className="mt-10">
               <MagneticButton variant="link">{t("about", "cta")}</MagneticButton>
             </div>
