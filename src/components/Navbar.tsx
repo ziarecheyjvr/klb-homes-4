@@ -8,27 +8,26 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Language } from "@/i18n/translations";
 
 const getNavLinks = (t: any) => [
-  { label: t("nav", "home"), href: "#hero", menu: null },
+  { label: t("nav", "home"), href: "/", menu: null },
   {
     label: t("nav", "buy"),
-    href: "#showcase",
+    href: "/buy",
     menu: [
-      { title: t("nav", "villas"), desc: t("nav", "villasDesc") },
-      { title: t("nav", "apartments"), desc: t("nav", "apartmentsDesc") },
-      { title: t("nav", "residences"), desc: t("nav", "residencesDesc") },
-      { title: t("nav", "newDev"), desc: t("nav", "newDevDesc") },
+      { title: t("nav", "villas"), desc: t("nav", "villasDesc"), href: "/buy?category=Villa" },
+      { title: t("nav", "apartments"), desc: t("nav", "apartmentsDesc"), href: "/buy?category=Apartment" },
+      { title: t("nav", "penthouses"), desc: t("nav", "penthousesDesc"), href: "/buy?category=Penthouse" },
     ],
   },
-  { label: t("nav", "sell"), href: "#contact", menu: null },
-  { label: t("nav", "rent"), href: "#contact", menu: null },
-  { label: t("nav", "invest"), href: "#invest", menu: null },
-  { label: t("nav", "about"), href: "#about", menu: null },
-  { label: t("nav", "contact"), href: "#contact", menu: null },
+  { label: t("nav", "sell"), href: "/sell", menu: null },
+  { label: t("nav", "rent"), href: "/rent", menu: null },
+  { label: t("nav", "invest"), href: "/invest", menu: null },
+  { label: t("nav", "about"), href: "/about", menu: null },
+  { label: t("nav", "contact"), href: "/contact", menu: null },
 ];
 
-export default function Navbar() {
+export default function Navbar({ solid = false }: { solid?: boolean }) {
   const { language, setLanguage, t } = useLanguage();
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(solid);
   const [openMenu, setOpenMenu] = useState<number | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
@@ -67,7 +66,7 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 40);
+      setScrolled(solid || y > 40);
 
       const nav = navRef.current;
       if (!nav) return;
@@ -78,9 +77,13 @@ export default function Navbar() {
       }
       lastY.current = y;
     };
+    
+    // Set initial state
+    onScroll();
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [solid]);
 
   useEffect(() => {
     const el = megaRef.current;
@@ -110,7 +113,7 @@ export default function Navbar() {
     <nav
       ref={navRef}
       className={`fixed inset-x-0 top-0 z-50 transition-[background,border-color] duration-500 ${
-        scrolled ? "glass" : "border-b border-transparent bg-transparent"
+        solid ? "bg-[var(--color-ink)]/95 backdrop-blur-xl border-b border-[var(--color-line)]" : scrolled ? "glass" : "border-b border-transparent bg-transparent"
       }`}
       onMouseLeave={() => setOpenMenu(null)}
     >
@@ -126,7 +129,7 @@ export default function Navbar() {
       </div>
 
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-12">
-        <a href="#hero" data-cursor-hover className="relative block h-14 w-[240px]">
+        <a href="/" data-cursor-hover className="relative block h-14 w-[240px]">
           <Image
             src="https://assets.cdn.filesafe.space/WKyceqEYmEdWqTzWB9Ns/media/6a4b78fc1209780f80962f73.webp"
             alt="KLB Homes"
@@ -169,7 +172,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-          <MagneticButton className={`text-[11px] font-bold ${!scrolled && "!text-white !border-white/50 hover:!border-white"}`}>{t("nav", "bookViewing")}</MagneticButton>
+          <MagneticButton as="a" href="/contact" className={`text-[11px] font-bold ${!scrolled && "!text-white !border-white/50 hover:!border-white"}`}>{t("nav", "bookViewing")}</MagneticButton>
         </div>
 
         <button
@@ -193,12 +196,12 @@ export default function Navbar() {
 
       <div
         ref={megaRef}
-        className="glass hidden border-t border-[var(--color-line)]"
+        className={`${solid ? 'bg-[var(--color-ink)]/98 backdrop-blur-xl' : 'glass'} hidden border-t border-[var(--color-line)]`}
         style={{ visibility: "hidden" }}
       >
-        <div className="mx-auto grid max-w-[1600px] grid-cols-4 gap-8 px-12 py-10">
+        <div className="mx-auto flex max-w-[1600px] justify-center gap-16 px-12 py-10">
           {NAV_LINKS[koupeIndex]?.menu?.map((item) => (
-            <a key={item.title} href="#showcase" data-cursor-hover className="group">
+            <a key={item.title} href={item.href || "/buy"} data-cursor-hover className="group">
               <h4 className="font-serif text-lg text-[var(--color-sand)] transition-colors group-hover:text-[var(--color-bronze)]">
                 {item.title}
               </h4>
@@ -229,7 +232,7 @@ export default function Navbar() {
           <button onClick={() => { setLanguage("es"); setMobileOpen(false); }} className={`text-sm ${language === 'es' ? 'text-[var(--color-sand)] font-bold' : 'text-[var(--color-sand-dim)]'}`}>ES</button>
           <button onClick={() => { setLanguage("cs"); setMobileOpen(false); }} className={`text-sm ${language === 'cs' ? 'text-[var(--color-sand)] font-bold' : 'text-[var(--color-sand-dim)]'}`}>CS</button>
         </div>
-        <MagneticButton className="mt-4 text-xs">{t("nav", "bookViewing")}</MagneticButton>
+        <MagneticButton as="a" href="/contact" className="mt-4 text-xs">{t("nav", "bookViewing")}</MagneticButton>
         <a href="tel:+34600145534" data-cursor-hover className="mt-2 text-xs uppercase tracking-[0.2em] text-[var(--color-bronze)]">
           +34 600 145 534
         </a>

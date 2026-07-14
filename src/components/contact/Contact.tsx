@@ -8,7 +8,7 @@ import MagneticButton from "../MagneticButton";
 
 const INQUIRY_TYPES = ["Buying", "Selling", "Renting", "Investment", "General Inquiry"];
 
-export default function Contact() {
+export default function Contact({ propertyContext }: { propertyContext?: { id: string; name: string } }) {
   const [submitted, setSubmitted] = useState(false);
   const [gdprError, setGdprError] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -38,6 +38,14 @@ export default function Contact() {
       return;
     }
 
+    const formData = new FormData(form);
+    formData.append("access_key", "ad1794e7-9886-4532-befd-ab8e30e3da2e");
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    }).catch(err => console.error("Web3Forms error:", err));
+
     gsap.to(formRef.current, {
       opacity: 0,
       y: -20,
@@ -55,10 +63,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative bg-[var(--color-ink)] px-6 py-32 md:px-12">
-      <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-16 md:grid-cols-2">
-        <div>
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">Contact Us</p>
+    <section id="contact" className={`relative bg-[var(--color-ink)] ${propertyContext ? '' : 'px-6 py-32 md:px-12'}`}>
+      <div className={`mx-auto ${propertyContext ? 'max-w-2xl' : 'grid max-w-[1600px] grid-cols-1 gap-16 md:grid-cols-2'}`}>
+        {!propertyContext && (
+          <div>
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">Contact KLB HOMES</p>
           <h2 className="max-w-md font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-5xl">
             Begin your Marbella property journey
           </h2>
@@ -94,10 +103,14 @@ export default function Contact() {
             />
           </div>
         </div>
+        )}
 
         <div className="relative">
           {!submitted && (
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
+              {propertyContext && (
+                <input type="hidden" name="Property Inquiry" value={`${propertyContext.name} (${propertyContext.id})`} />
+              )}
               <FloatingSelect label="Inquiry Type" name="inquiryType" options={INQUIRY_TYPES} required />
 
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useLineReveal } from "@/hooks/useTextReveal";
 import { useLanguage } from "@/i18n/LanguageContext";
 import clsx from "clsx";
+import MagneticButton from "../MagneticButton";
 
 const CATEGORIES = ["All Properties", "Villas", "Apartments", "Penthouses", "Plots"] as const;
 
@@ -19,7 +20,7 @@ export default function PropertyShowcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(
-    () => (active === "All Properties" ? properties : properties.filter((p) => p.category + "s" === (active as string))),
+    () => (active === "All Properties" ? properties : properties.filter((p) => p.category.includes(active.slice(0, -1)))),
     [active]
   );
 
@@ -64,7 +65,7 @@ export default function PropertyShowcase() {
       <div className="mx-auto max-w-[1600px]">
         <div className="mb-16 flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">{t("showcase", "subtitle")}</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">Properties</p>
             <h2 ref={headingRef} className="max-w-2xl font-serif text-4xl leading-tight text-[var(--color-sand)] md:text-6xl">
               {t("showcase", "title")}
             </h2>
@@ -90,9 +91,15 @@ export default function PropertyShowcase() {
         </div>
 
         <div ref={gridRef} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((property) => (
+          {filtered.slice(0, 6).map((property) => (
             <PropertyCard key={property.id} property={property} />
           ))}
+        </div>
+
+        <div className="mt-20 flex justify-center">
+          <MagneticButton as="a" href="/buy" className="px-10 py-4 border border-[var(--color-bronze-soft)] hover:border-[var(--color-bronze)] bg-transparent text-[var(--color-sand)] hover:opacity-70 transition-all font-bold uppercase tracking-widest text-xs">
+            View more properties
+          </MagneticButton>
         </div>
       </div>
     </section>

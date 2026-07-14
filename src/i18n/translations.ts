@@ -16,10 +16,8 @@ export const translations = {
       villasDesc: "Luxury villas with sea views",
       apartments: "Apartments",
       apartmentsDesc: "Modern apartments in the heart of Marbella",
-      residences: "Residences",
-      residencesDesc: "Residences in prestigious locations",
-      newDev: "New Developments",
-      newDevDesc: "Off-market and upcoming projects"
+      penthouses: "Penthouses",
+      penthousesDesc: "Exclusive rooftop living",
     },
     hero: {
       agencySubtitle: "Marbella's Premier Boutique Real Estate Agency",
@@ -30,7 +28,7 @@ export const translations = {
     },
     manifesto: {
       subtitle: "Beyond Real Estate",
-      title: "At KLB Homes, we go beyond traditional real estate — we're your dedicated Personal Property Consultants, focused entirely on representing you, the buyer.",
+      title: "At KLB Homes, we go beyond traditional real estate —\nwe're your dedicated Personal Property Consultants,\nfocused entirely on representing you, the buyer.",
       highlight: "We don't just sell properties — we curate a lifestyle.",
       p1: "Marbella is more than a destination — it is a way of life. At KLB Homes, we offer an exclusive collection of luxury properties, off-market opportunities, and complete renovation services tailored for discerning clients.",
       p2: "Whether you are looking for a modern architectural masterpiece, a timeless beachfront villa, or a high-yield investment, our local expertise and unwavering dedication ensure a seamless and rewarding experience.",
@@ -38,7 +36,7 @@ export const translations = {
     },
     showcase: {
       title: "The Collection",
-      filterAll: "All Properties",
+      filterAll: "All",
       filterVillas: "Villas",
       filterApartments: "Apartments",
       filterPenthouses: "Penthouses",

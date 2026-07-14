@@ -66,7 +66,7 @@ export default function Manifesto() {
         </p>
         <p
           ref={textRef}
-          className="font-serif text-3xl leading-snug text-[var(--color-sand)] md:text-5xl"
+          className="font-serif text-3xl leading-snug text-[var(--color-sand)] md:text-5xl whitespace-pre-line"
         >
           {t("manifesto", "title")}
         </p>

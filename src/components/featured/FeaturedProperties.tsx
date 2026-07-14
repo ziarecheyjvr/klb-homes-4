@@ -116,7 +116,7 @@ export default function FeaturedProperties() {
           </div>
         </div>
 
-        {featured.map((property) => (
+        {featured.slice(0, 6).map((property) => (
           <FeaturedCard key={property.id} property={property} />
         ))}
       </div>
