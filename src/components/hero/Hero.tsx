@@ -80,7 +80,7 @@ export default function Hero() {
             </p>
             <h1
               ref={headlineRef}
-              className="font-serif text-[15vw] leading-[0.88] tracking-tight text-white opacity-0 sm:text-[10vw] lg:text-[6.4vw]"
+              className="font-serif text-[12vw] leading-[0.88] tracking-tight text-white opacity-0 sm:text-[8vw] lg:text-[5.5vw]"
             >
               {t("hero", "titlePart1")}
               <br />

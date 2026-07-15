@@ -216,7 +216,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
       >
         <button 
           onClick={() => setMobileOpen(false)}
-          className="absolute top-6 right-6 p-2 text-white"
+          className="absolute top-6 right-6 p-2 text-black"
           aria-label="Close menu"
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
