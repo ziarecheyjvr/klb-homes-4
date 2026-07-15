@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/contact/Contact";
 import PageReveal from "@/components/PageReveal";
 import PropertyFAQ from "@/components/buy/PropertyFAQ";
+import PropertyGallery from "@/components/buy/PropertyGallery";
 
 export function generateStaticParams() {
   return allListings.map((property) => ({
@@ -35,6 +36,24 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
   const hasFeatures = property.features && property.features.length > 0;
   const hasAmenities = property.amenities && property.amenities.length > 0;
 
+  const statements = [
+    { prefix: "A ", highlight: "sophisticated", suffix: " lifestyle." },
+    { prefix: "An ", highlight: "exclusive", suffix: " sanctuary." },
+    { prefix: "Where ", highlight: "elegance", suffix: " meets comfort." },
+    { prefix: "Redefining ", highlight: "modern", suffix: " luxury." },
+    { prefix: "A masterpiece of ", highlight: "architectural", suffix: " design." },
+    { prefix: "Uncompromising ", highlight: "quality", suffix: " and style." },
+    { prefix: "The pinnacle of ", highlight: "coastal", suffix: " living." },
+    { prefix: "Your ", highlight: "private", suffix: " Mediterranean oasis." },
+    { prefix: "Exceptional ", highlight: "design,", suffix: " unparalleled views." },
+    { prefix: "Experience ", highlight: "timeless", suffix: " sophistication." },
+    { prefix: "A statement of ", highlight: "pure", suffix: " prestige." },
+    { prefix: "Elevating the art of ", highlight: "fine", suffix: " living." }
+  ];
+  
+  const hash = property.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const statement = statements[hash % statements.length];
+
   return (
     <>
       {/* We use solid=false so the navbar floats over the hero image transparently initially */}
@@ -58,11 +77,17 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
 
             <div className="relative z-10 text-left px-6 md:px-12 lg:px-16 pb-16 md:pb-24">
               <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)] mb-4 drop-shadow-md">
-                {property.category} {property.location ? `· ${property.location}` : ""}
+                {property.category}
               </p>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white tracking-tight drop-shadow-xl">
                 {property.name}
               </h1>
+              {property.location && (
+                <div className="flex items-center gap-2 mt-6 text-white drop-shadow-md">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-bronze)]"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span className="text-xl md:text-2xl font-serif tracking-wide">{property.location}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -74,7 +99,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
               <div className="flex-1">
                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-bronze)] mb-6">Property Overview</p>
                  <h2 className="font-serif text-4xl md:text-5xl text-[var(--color-sand)] mb-8 leading-tight">
-                   A <span className="text-[var(--color-bronze)] italic">sophisticated</span> lifestyle.
+                   {statement.prefix}<span className="text-[var(--color-bronze)] italic">{statement.highlight}</span>{statement.suffix}
                  </h2>
                  <div className="space-y-6 text-[var(--color-sand-dim)] font-light leading-relaxed text-lg">
                    {(hasDescription ? property.description : fallbackDescription)!.map((p, i) => (
@@ -105,6 +130,12 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
                        <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-sand-dim)] mb-2">Type</p>
                        <p className="font-serif text-xl text-[var(--color-sand)]">{property.category}</p>
                      </div>
+                     {property.location && (
+                       <div className="col-span-2">
+                         <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-sand-dim)] mb-2">Location</p>
+                         <p className="font-serif text-xl text-[var(--color-sand)]">{property.location}</p>
+                       </div>
+                     )}
                   </div>
 
                   <div className="border-t border-[var(--color-line)] pt-8 flex items-center justify-between">
@@ -121,37 +152,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
             </div>
 
             {/* 3. Gallery */}
-            <div className="reveal py-24 border-t border-[var(--color-line)]">
-              <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-                <div>
-                   <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-bronze)] mb-3">Immerse Yourself</p>
-                   <h2 className="font-serif text-4xl text-[var(--color-sand)]">Gallery</h2>
-                </div>
-                <div className="flex gap-4">
-                  <button aria-label="Previous image" className="w-12 h-12 rounded-full border border-[var(--color-line)] flex items-center justify-center text-[var(--color-sand-dim)] hover:border-[var(--color-bronze)] hover:text-[var(--color-bronze)] transition-colors">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                  </button>
-                  <button aria-label="Next image" className="w-12 h-12 rounded-full border border-[var(--color-line)] flex items-center justify-center text-[var(--color-sand-dim)] hover:border-[var(--color-bronze)] hover:text-[var(--color-bronze)] transition-colors">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                  </button>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {(hasGallery ? property.gallery : [property.image, property.image])!.slice(0, 4).map((img, i) => (
-                  <div key={i} className="reveal-img relative aspect-[4/3] rounded-sm overflow-hidden group bg-[var(--color-ink-soft)]">
-                    <Image 
-                      src={img} 
-                      alt={`Gallery ${i}`} 
-                      fill 
-                      className={`object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-out ${!hasGallery ? 'opacity-50 grayscale' : ''}`} 
-                    />
-                    {!hasGallery && (
-                       <div className="absolute inset-0 flex items-center justify-center text-[var(--color-sand)] font-serif italic text-xl">Image coming soon</div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
+            <PropertyGallery property={property} />
 
             {/* 4. Map & Features (Replacing Floorplan & Surface Areas) */}
             <div className="reveal py-24 border-t border-[var(--color-line)] flex flex-col lg:flex-row gap-16 lg:gap-24">

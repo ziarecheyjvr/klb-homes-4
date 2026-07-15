@@ -70,11 +70,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
 
       const nav = navRef.current;
       if (!nav) return;
-      if (y > lastY.current && y > 200) {
-        gsap.to(nav, { yPercent: -100, duration: 0.5, ease: "power3.inOut" });
-      } else {
-        gsap.to(nav, { yPercent: 0, duration: 0.5, ease: "power3.inOut" });
-      }
+      
+      // Header remains perfectly sticky at all times; no aggressive hide/show animations.
       lastY.current = y;
     };
     
@@ -196,7 +193,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
 
       <div
         ref={megaRef}
-        className={`${solid ? 'bg-[var(--color-ink)]/98 backdrop-blur-xl' : 'glass'} hidden border-t border-[var(--color-line)]`}
+        className="hidden border-t border-[var(--color-line)] bg-[var(--color-ink)]/98 backdrop-blur-xl"
         style={{ visibility: "hidden" }}
       >
         <div className="mx-auto flex max-w-[1600px] justify-center gap-16 px-12 py-10">

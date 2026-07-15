@@ -3,29 +3,32 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { featured, Property } from "@/data/properties";
+import Link from "next/link";
+import { allListings, BuyProperty } from "@/data/buyProperties";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 type Stat =
   | { label: string; kind: "number"; value: number; suffix: string }
   | { label: string; kind: "text"; text: string };
 
-function buildStats(property: Property): Stat[] {
+function buildStats(property: BuyProperty): Stat[] {
   const stats: Stat[] = [];
 
-  if (property.beds) stats.push({ label: "Bedrooms", kind: "number", value: property.beds, suffix: "" });
-  if (property.baths) stats.push({ label: "Bathrooms", kind: "number", value: property.baths, suffix: "" });
+  if (property.beds) stats.push({ label: "Bedrooms", kind: "number", value: Number(property.beds), suffix: "" });
+  if (property.baths) stats.push({ label: "Bathrooms", kind: "number", value: Number(property.baths), suffix: "" });
 
-  const areaMatch = property.area.match(/^([\d,]+)\s*(.*)$/);
-  if (areaMatch) {
-    stats.push({
-      label: "Size",
-      kind: "number",
-      value: Number(areaMatch[1].replace(/,/g, "")),
-      suffix: areaMatch[2] ? ` ${areaMatch[2]}` : "",
-    });
-  } else {
-    stats.push({ label: "Configuration", kind: "text", text: property.area });
+  if (property.area) {
+    const areaMatch = property.area.match(/^([\d,]+)\s*(.*)$/);
+    if (areaMatch) {
+      stats.push({
+        label: "Size",
+        kind: "number",
+        value: Number(areaMatch[1].replace(/,/g, "")),
+        suffix: areaMatch[2] ? ` ${areaMatch[2]}` : "",
+      });
+    } else {
+      stats.push({ label: "Configuration", kind: "text", text: property.area });
+    }
   }
 
   stats.push({ label: "Type", kind: "text", text: property.category });
@@ -116,7 +119,7 @@ export default function FeaturedProperties() {
           </div>
         </div>
 
-        {featured.slice(0, 6).map((property) => (
+        {allListings.slice(20, 26).map((property) => (
           <FeaturedCard key={property.id} property={property} />
         ))}
       </div>
@@ -124,10 +127,7 @@ export default function FeaturedProperties() {
   );
 }
 
-function FeaturedCard({ property }: { property: (typeof featured)[number] }) {
-  const { t } = useLanguage();
-  const [showPlan, setShowPlan] = useState(false);
-
+function FeaturedCard({ property }: { property: BuyProperty }) {
   return (
     <div className="relative flex h-full w-[var(--panel-w)] flex-shrink-0 items-center justify-center overflow-hidden">
       <Image
@@ -168,26 +168,14 @@ function FeaturedCard({ property }: { property: (typeof featured)[number] }) {
 
         <div className="mt-8 flex items-center gap-6">
           <span className="font-serif font-bold text-2xl text-[var(--color-bronze)]">{property.price}</span>
-          <button
-            data-cursor-hover
-            onClick={() => setShowPlan((s) => !s)}
-            className="rounded-full border border-[var(--color-bronze-soft)] px-5 py-2 text-xs uppercase tracking-[0.15em] text-white transition-colors hover:border-[var(--color-bronze)]"
+          <Link
+            href={`/buy/${property.id}`}
+            className="rounded-full bg-[var(--color-bronze)] px-5 py-2 text-xs uppercase tracking-[0.15em] text-[var(--color-ink)] transition-colors hover:bg-white hover:text-black font-bold"
           >
-            {showPlan ? t("featured", "hidePlan") : t("featured", "viewPlan")}
-          </button>
+            View Property
+          </Link>
         </div>
       </div>
-
-      {showPlan && (
-        <div className="glass absolute inset-6 z-20 flex items-center justify-center rounded-sm md:inset-16">
-          <div className="text-center">
-            <div className="mx-auto h-64 w-80 rounded-sm border border-dashed border-[var(--color-bronze-soft)]/60" />
-            <p className="mt-4 text-xs uppercase tracking-[0.2em] text-[var(--color-sand-dim)]">
-              Floor plan preview — {property.area}
-            </p>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

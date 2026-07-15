@@ -93,7 +93,7 @@ export default function Hero() {
               {t("hero", "description")}
             </p>
             <div ref={ctaRef} className="mt-6">
-              <MagneticButton variant="link">{t("hero", "cta")}</MagneticButton>
+              <MagneticButton as="a" href="/contact" variant="link">{t("hero", "cta")}</MagneticButton>
             </div>
           </div>
         </div>

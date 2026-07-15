@@ -83,7 +83,7 @@ export default function About() {
       <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-16 md:grid-cols-2 md:items-center">
         <div className="about-image relative h-[500px] overflow-hidden rounded-sm md:h-[720px]">
           <Image
-            src="https://klb-homes.com/wp-content/uploads/2025/05/93E1949C-0D3C-4A35-B4ED-80903A6EB7A9.jpg"
+            src="/assets/KLB Homes/Lucie-Balasova.webp"
             alt="Lucie Balasova, Founder of KLB Homes"
             fill
             className="object-cover"

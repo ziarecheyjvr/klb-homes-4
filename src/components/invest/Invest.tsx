@@ -51,7 +51,7 @@ export default function Invest() {
           </p>
 
           <div className="mt-10">
-            <MagneticButton>{t("invest", "cta")}</MagneticButton>
+            <MagneticButton as="a" href="/invest">{t("invest", "cta")}</MagneticButton>
           </div>
         </div>
 

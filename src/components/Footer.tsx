@@ -35,8 +35,8 @@ export default function Footer() {
           <div>
             <p className="mb-4 text-[10px] uppercase tracking-[0.2em] text-[var(--color-bronze)]">{t("footer", "legalTitle")}</p>
             <ul className="space-y-2 text-sm text-[var(--color-sand-dim)]">
-              <li><a href="#" data-cursor-hover className="hover:text-[var(--color-sand)]">{t("footer", "privacy")}</a></li>
-              <li><a href="#" data-cursor-hover className="hover:text-[var(--color-sand)]">{t("footer", "terms")}</a></li>
+              <li><a href="/privacy-policy" data-cursor-hover className="hover:text-[var(--color-sand)]">{t("footer", "privacy")}</a></li>
+              <li><a href="/terms-and-conditions" data-cursor-hover className="hover:text-[var(--color-sand)]">{t("footer", "terms")}</a></li>
             </ul>
           </div>
           <div>

@@ -2,8 +2,9 @@
 
 import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap, Flip, ScrollTrigger } from "@/lib/gsap";
-import { properties, Property } from "@/data/properties";
+import { allListings as properties, BuyProperty as Property } from "@/data/buyProperties";
 import { useEffect } from "react";
 import { useLineReveal } from "@/hooks/useTextReveal";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -20,7 +21,10 @@ export default function PropertyShowcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(
-    () => (active === "All Properties" ? properties : properties.filter((p) => p.category.includes(active.slice(0, -1)))),
+    () => {
+      const base = properties.slice(5);
+      return active === "All Properties" ? base : base.filter((p) => p.category.includes(active.slice(0, -1)));
+    },
     [active]
   );
 
@@ -92,7 +96,9 @@ export default function PropertyShowcase() {
 
         <div ref={gridRef} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.slice(0, 6).map((property) => (
-            <PropertyCard key={property.id} property={property} />
+            <Link href={`/buy/${property.id}`} key={property.id} className="block group">
+              <PropertyCard property={property} />
+            </Link>
           ))}
         </div>
 
@@ -145,7 +151,7 @@ function PropertyCard({ property }: { property: Property }) {
     <div
       ref={cardRef}
       data-cursor-hover
-      className="prop-card group relative aspect-[4/5] overflow-hidden rounded-sm"
+      className="prop-card relative aspect-[4/5] overflow-hidden rounded-sm w-full h-full"
       onMouseEnter={handleEnter}
       onMouseMove={handleTilt}
       onMouseLeave={handleLeave}

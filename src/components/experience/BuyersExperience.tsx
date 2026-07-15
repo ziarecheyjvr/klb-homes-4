@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 
 import { useLanguage } from "@/i18n/LanguageContext";
+import MagneticButton from "../MagneticButton";
 
 export default function BuyersExperience() {
   const { t } = useLanguage();
@@ -117,6 +118,10 @@ export default function BuyersExperience() {
               </div>
             </div>
           ))}
+        </div>
+        
+        <div className="mt-20 flex justify-center">
+           <MagneticButton as="a" href="/contact">{t("nav", "bookViewing")}</MagneticButton>
         </div>
       </div>
     </section>
