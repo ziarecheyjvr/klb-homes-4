@@ -107,9 +107,10 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
   const koupeIndex = NAV_LINKS.findIndex((l) => l.menu);
 
   return (
-    <nav
-      ref={navRef}
-      className={`fixed inset-x-0 top-0 z-50 transition-[background,border-color] duration-500 ${
+    <>
+      <nav
+        ref={navRef}
+        className={`fixed inset-x-0 top-0 z-50 transition-[background,border-color] duration-500 ${
         solid ? "bg-[var(--color-ink)]/95 backdrop-blur-xl border-b border-[var(--color-line)]" : scrolled ? "glass" : "border-b border-transparent bg-transparent"
       }`}
       onMouseLeave={() => setOpenMenu(null)}
@@ -210,9 +211,16 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
 
       <div
         ref={mobileMenuRef}
-        className="absolute inset-x-0 top-full hidden h-[calc(100svh-var(--nav-h,72px))] flex-col items-center justify-center gap-6 overflow-y-auto border-t border-[var(--color-line)] bg-[var(--color-ink)]/98 py-10 backdrop-blur-2xl lg:hidden"
+        className="fixed inset-0 hidden h-[100svh] w-full flex-col items-center justify-center gap-6 overflow-y-auto bg-[var(--color-ink)]/98 py-10 backdrop-blur-2xl lg:hidden"
         style={{ visibility: "hidden" }}
       >
+        <button 
+          onClick={() => setMobileOpen(false)}
+          className="absolute top-6 right-6 p-2 text-white"
+          aria-label="Close menu"
+        >
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
         {NAV_LINKS.map((link) => (
           <a
             key={link.label}
@@ -235,5 +243,15 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         </a>
       </div>
     </nav>
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className={`fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-ink)] border border-[var(--color-line)] text-[var(--color-sand)] shadow-2xl transition-all duration-300 lg:hidden ${
+        scrolled && !mobileOpen ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0 pointer-events-none"
+      }`}
+      aria-label="Back to top"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 15l-7-7-7 7"/></svg>
+    </button>
+  </>
   );
 }
