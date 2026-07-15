@@ -57,7 +57,7 @@ export default function Invest() {
 
         <div className="invest-image relative h-[420px] overflow-hidden rounded-sm md:h-[620px]">
           <Image
-            src="https://klb-homes.com/wp-content/uploads/2026/04/Las-Palmeras-Exteriors-10mb-28-scaled.jpg"
+            src="/assets/KLB Homes/Properties/salvia-ii/09-15_Salon01-scaled-1.webp"
             alt="KLB Homes Developments — Las Palmeras"
             fill
             className="object-cover"

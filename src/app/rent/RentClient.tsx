@@ -132,7 +132,7 @@ export default function RentClient() {
               <div ref={lineRef} className="absolute left-0 top-0 h-full w-[1px] bg-[var(--color-bronze-soft)]/40 origin-top" />
               
               <h2 className="rent-text font-serif text-3xl md:text-5xl text-[var(--color-sand)] mb-8">
-                Your Ideal Lifestyle <br/> Awaits
+                Your Ideal Lifestyle Awaits
               </h2>
               <div className="space-y-6 text-base md:text-lg text-[var(--color-sand-dim)] font-light leading-relaxed">
                 <p className="rent-text">

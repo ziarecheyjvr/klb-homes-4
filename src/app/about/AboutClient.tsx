@@ -201,7 +201,7 @@ export default function AboutClient() {
           <div className="grid grid-cols-1 lg:grid-cols-2">
             
             {/* Left: Sticky Image */}
-            <div className="relative h-[60vh] lg:h-screen w-full lg:sticky top-0">
+            <div className="relative h-[60vh] lg:h-[75vh] w-full lg:sticky lg:top-[12.5vh]">
               <div ref={founderImageRef} className="absolute inset-0 lg:p-12 pb-0">
                 <div className="relative h-full w-full overflow-hidden rounded-t-sm lg:rounded-sm">
                   <Image
@@ -216,7 +216,7 @@ export default function AboutClient() {
             </div>
 
             {/* Right: Scrolling Content */}
-            <div ref={founderContentRef} className="relative px-6 py-16 md:px-12 lg:py-40 z-10 flex items-center">
+            <div ref={founderContentRef} className="relative px-6 py-16 md:px-12 lg:pt-40 lg:pb-16 z-10 flex items-center">
               <div className="max-w-xl">
                 <p className="founder-text mb-4 text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-bronze)]">
                   Your Trusted Partner
@@ -228,7 +228,7 @@ export default function AboutClient() {
                   Property Advisor | Founder of KLB Homes
                 </p>
                 
-                <p className="founder-text font-serif text-2xl md:text-3xl italic text-[var(--color-bronze)] mb-8 leading-tight">
+                <p className="founder-text font-serif text-xl md:text-2xl italic text-[var(--color-bronze)] mb-8 leading-tight">
                   "Marbella is more than a destination—it is a way of life."
                 </p>
                 

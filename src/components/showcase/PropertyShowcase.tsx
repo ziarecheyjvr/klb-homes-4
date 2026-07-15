@@ -11,11 +11,11 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import clsx from "clsx";
 import MagneticButton from "../MagneticButton";
 
-const CATEGORIES = ["All Properties", "Villas", "Apartments", "Penthouses", "Plots"] as const;
+const CATEGORIES = ["All", "Villas", "Apartments", "Penthouses", "Plots"] as const;
 
 export default function PropertyShowcase() {
   const { t } = useLanguage();
-  const [active, setActive] = useState<(typeof CATEGORIES)[number]>("All Properties");
+  const [active, setActive] = useState<(typeof CATEGORIES)[number]>("All");
   const gridRef = useRef<HTMLDivElement>(null);
   const headingRef = useLineReveal<HTMLHeadingElement>();
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ export default function PropertyShowcase() {
   const filtered = useMemo(
     () => {
       const base = properties.slice(5);
-      return active === "All Properties" ? base : base.filter((p) => p.category.includes(active.slice(0, -1)));
+      return active === "All" ? base : base.filter((p) => p.category.includes(active.slice(0, -1)));
     },
     [active]
   );
