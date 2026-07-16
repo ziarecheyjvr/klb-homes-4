@@ -16,8 +16,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.2,
+      syncTouch: true,
+      touchMultiplier: 2,
     });
     lenisRef.current = lenis;
 

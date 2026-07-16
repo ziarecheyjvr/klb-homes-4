@@ -38,8 +38,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="relative bg-[var(--color-ink)] min-h-screen">
-      <PageReveal />
-      <Navbar solid={false} />
+      <PageReveal>
+        <Navbar solid={false} />
 
       {/* Hero Section */}
       <section className="relative h-[70vh] md:h-[85vh] w-full flex items-end">
@@ -95,7 +95,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
-      <Footer />
+        <Footer />
+      </PageReveal>
     </main>
   );
 }

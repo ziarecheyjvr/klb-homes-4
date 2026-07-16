@@ -17,8 +17,8 @@ export default function BlogPage() {
 
   return (
     <main className="relative bg-[var(--color-ink)] min-h-screen">
-      <PageReveal />
-      <Navbar solid />
+      <PageReveal>
+        <Navbar solid />
 
       <div className="pt-32 md:pt-48 pb-24 px-6 md:px-12 mx-auto max-w-[1600px]">
         {/* Header */}
@@ -86,7 +86,8 @@ export default function BlogPage() {
         </div>
       </div>
 
-      <Footer />
+        <Footer />
+      </PageReveal>
     </main>
   );
 }
