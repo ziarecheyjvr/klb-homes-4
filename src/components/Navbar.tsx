@@ -21,6 +21,7 @@ const getNavLinks = (t: any) => [
   { label: t("nav", "sell"), href: "/sell", menu: null },
   { label: t("nav", "rent"), href: "/rent", menu: null },
   { label: t("nav", "invest"), href: "/invest", menu: null },
+  { label: t("nav", "blog"), href: "/blog", menu: null },
   { label: t("nav", "about"), href: "/about", menu: null },
   { label: t("nav", "contact"), href: "/contact", menu: null },
 ];

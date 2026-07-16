@@ -27,15 +27,16 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       (window as typeof window & { __lenis?: Lenis }).__lenis = lenis;
     }
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    const rafId = requestAnimationFrame(raf);
 
     return () => {
       lenis.destroy();
       lenisRef.current = null;
-      gsap.ticker.remove(lenis.raf);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
