@@ -83,7 +83,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </p>
           <div className="flex justify-center gap-6">
             <MagneticButton as="a" href="/buy">View Properties</MagneticButton>
-            <MagneticButton as="a" href="/contact" variant="outline">Contact Us</MagneticButton>
+            <MagneticButton as="a" href="/contact" variant="link">Contact Us</MagneticButton>
           </div>
         </div>
         
