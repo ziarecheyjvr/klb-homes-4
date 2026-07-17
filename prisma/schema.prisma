@@ -1,0 +1,145 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("AGENT") // ADMIN or AGENT
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  tasks     Task[]
+  viewings  Viewing[]
+  leads     Lead[]
+}
+
+model Lead {
+  id          String   @id @default(cuid())
+  name        String
+  email       String?
+  phone       String?
+  preferredContact String? // Email, Phone, WhatsApp
+  
+  // Buyer Info
+  budget      String?
+  area        String?
+  propertyType String?
+  bedrooms    String?
+  timeline    String?
+  
+  // Lead Details
+  source      String? // Website, Referral, etc.
+  status      String   @default("NEW") // NEW, CONTACTED, QUALIFIED, LOST
+  leadScore   Int?
+  notes       String?
+  aiSummary   String?
+  
+  assignedToId String?
+  assignedTo   User?    @relation(fields: [assignedToId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  viewings    Viewing[]
+  messages    Message[]
+  tasks       Task[]
+}
+
+model Property {
+  id          String   @id @default(cuid())
+  mlsId       String?  @unique // For future MLS/Resales Online integration
+  source      String   @default("MANUAL") // MANUAL, RESALES_ONLINE
+  
+  title       String
+  price       String
+  status      String   @default("AVAILABLE") // AVAILABLE, RESERVED, SOLD
+  bedrooms    Int?
+  bathrooms   Int?
+  type        String?
+  community   String?
+  description String?
+  images      String?  // JSON stringified array of image URLs for SQLite
+  videos      String?  // JSON stringified array of video URLs
+  isFeatured  Boolean  @default(false)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  viewings    Viewing[]
+}
+
+model Viewing {
+  id          String   @id @default(cuid())
+  scheduledAt DateTime
+  status      String   @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
+  
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id])
+  
+  propertyId  String
+  property    Property @relation(fields: [propertyId], references: [id])
+  
+  agentId     String?
+  agent       User?    @relation(fields: [agentId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  dueDate     DateTime?
+  status      String   @default("PENDING") // PENDING, COMPLETED
+  
+  agentId     String
+  agent       User     @relation(fields: [agentId], references: [id])
+  
+  leadId      String?
+  lead        Lead?    @relation(fields: [leadId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Message {
+  id          String   @id @default(cuid())
+  content     String
+  source      String   @default("WEB_CHAT") // WEB_CHAT, AI, CONTACT_FORM, WHATSAPP
+  isAiResponse Boolean @default(false)
+  
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id])
+  
+  createdAt   DateTime @default(now())
+}
+
+model BlogPost {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  excerpt       String?
+  content       String   // HTML or Markdown
+  seoMeta       String?  // JSON stringified
+  featuredImage String?
+  category      String?
+  readTime      String?
+  publishedAt   DateTime?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
