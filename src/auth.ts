@@ -17,6 +17,7 @@ declare module "next-auth" {
 }
 
 export const authConfig = {
+  secret: process.env.AUTH_SECRET || "GhkamGO8MylJK8jfXEYMcKiRGrhS1XfdQoRq5blZVnsp",
   pages: {
     signIn: "/admin/login",
   },
