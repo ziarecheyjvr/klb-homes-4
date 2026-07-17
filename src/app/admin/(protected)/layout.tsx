@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { LogOut, LayoutDashboard, Users, Home, Calendar, CheckSquare, MessageSquare, FileText, Settings } from "lucide-react";
+import SidebarItem from "./SidebarItem";
 
 export default async function AdminLayout({
   children,
@@ -73,14 +74,3 @@ export default async function AdminLayout({
   );
 }
 
-function SidebarItem({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
-  return (
-    <Link 
-      href={href}
-      className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors"
-    >
-      {icon}
-      {label}
-    </Link>
-  );
-}
