@@ -2,6 +2,7 @@ import type { NextAuthConfig } from 'next-auth';
  
 export const authConfig = {
   secret: process.env.AUTH_SECRET || "GhkamGO8MylJK8jfXEYMcKiRGrhS1XfdQoRq5blZVnsp",
+  trustHost: true,
   pages: {
     signIn: '/admin/login',
   },
@@ -10,7 +11,7 @@ export const authConfig = {
       const isLoggedIn = !!auth?.user;
       const isOnAdmin = nextUrl.pathname.startsWith('/admin');
       if (isOnAdmin) {
-        if (nextUrl.pathname === '/admin/login') {
+        if (nextUrl.pathname.startsWith('/admin/login')) {
           if (isLoggedIn) return Response.redirect(new URL('/admin', nextUrl));
           return true;
         }
