@@ -5,6 +5,7 @@ import { gsap } from "@/lib/gsap";
 import FloatingField from "./FloatingField";
 import FloatingSelect from "./FloatingSelect";
 import MagneticButton from "../MagneticButton";
+import { submitLead } from "@/app/actions/leads";
 
 const INQUIRY_TYPES = ["Buying", "Selling", "Renting", "Investment", "General Inquiry"];
 
@@ -39,6 +40,17 @@ export default function Contact({ propertyContext }: { propertyContext?: { id: s
     }
 
     const formData = new FormData(form);
+    
+    // Add CRM hidden fields
+    formData.append("source", propertyContext ? "PROPERTY_INQUIRY" : "CONTACT_FORM");
+    if (propertyContext?.id) {
+      formData.append("propertyId", propertyContext.id);
+    }
+    
+    // 1. Submit to CRM
+    submitLead(null, formData).catch(err => console.error("CRM save error:", err));
+
+    // 2. Submit to Web3Forms for email forwarding
     formData.append("access_key", "ad1794e7-9886-4532-befd-ab8e30e3da2e");
 
     fetch("https://api.web3forms.com/submit", {
