@@ -20,7 +20,7 @@ export default async function AdminLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-gray-200 flex flex-col fixed inset-y-0 z-10">
         <div className="h-16 flex items-center px-6 border-b border-gray-200">
-          <span className="font-serif text-xl font-bold tracking-wide text-gray-900">KLB CRM</span>
+          <span className="font-serif text-lg font-bold tracking-wide text-gray-900">KLB Homes Admin</span>
         </div>
         
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
@@ -59,7 +59,7 @@ export default async function AdminLayout({
       {/* Main Content */}
       <main className="flex-1 ml-64 flex flex-col min-h-screen">
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-10">
-          <h2 className="text-lg font-medium text-gray-800">Admin Dashboard</h2>
+          <h2 className="text-lg font-medium text-gray-800">KLB Homes Admin Portal</h2>
           <div className="flex items-center gap-4">
             <Link href="/" target="_blank" className="text-sm text-gray-500 hover:text-gray-900">
               View Website ↗
