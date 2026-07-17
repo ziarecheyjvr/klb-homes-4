@@ -28,21 +28,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
         
-        let user = await prisma.user.findUnique({
-          where: { email: credentials.email as string }
-        });
+        // Vercel Ephemeral / Missing SQLite DB Bypass
+        if (credentials.email === 'admin@klbhomes.com' && credentials.password === 'admin123') {
+          return { id: 'admin-id', email: 'admin@klbhomes.com', name: 'KLB Admin', role: 'ADMIN' };
+        }
         
-        // Vercel Serverless SQLite ephemeral filesystem fallback
-        if (!user && credentials.email === 'admin@klbhomes.com') {
-          const hashedPassword = await bcrypt.hash('admin123', 10);
-          user = await prisma.user.create({
-            data: {
-              email: 'admin@klbhomes.com',
-              name: 'KLB Admin',
-              password: hashedPassword,
-              role: 'ADMIN',
-            }
+        let user;
+        try {
+          user = await prisma.user.findUnique({
+            where: { email: credentials.email as string }
           });
+        } catch (e) {
+          console.error("Prisma error on Vercel:", e);
+          return null;
         }
         
         if (!user) return null;
