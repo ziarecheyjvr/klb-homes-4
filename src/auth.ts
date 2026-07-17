@@ -4,6 +4,18 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { NextAuthConfig } from "next-auth";
 
+declare module "next-auth" {
+  interface User {
+    role?: string;
+  }
+  interface Session {
+    user: User & {
+      id: string;
+      role?: string;
+    };
+  }
+}
+
 export const authConfig = {
   pages: {
     signIn: "/admin/login",
